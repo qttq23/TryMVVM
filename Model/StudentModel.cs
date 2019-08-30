@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace TryMVVM.Model
 {
-    class StudentModel
+    public class StudentModel
     {
         
     }
 
-    class Student : INotifyPropertyChanged
+    public class Student : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -51,7 +51,7 @@ namespace TryMVVM.Model
 
         public string FullName
         {
-            get => FirstName + LastName;
+            get => FirstName + " " + LastName;
           
         }
         private string firstName;

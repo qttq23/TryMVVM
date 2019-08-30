@@ -23,6 +23,8 @@ namespace TryMVVM.View
         public StudentView()
         {
             InitializeComponent();
+            //this.DataContext = new TryMVVM.ViewModel.StudentViewModel();
+
         }
     }
 }

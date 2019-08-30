@@ -29,10 +29,10 @@ namespace TryMVVM
 
         private void StudentViewControl_Loaded(object sender, RoutedEventArgs e)
         {
-            StudentViewModel studentViewModelObject = new StudentViewModel();
-            studentViewModelObject.LoadStudents();
+            //StudentViewModel studentViewModelObject = new StudentViewModel();
+            //studentViewModelObject.LoadStudents();
 
-            StudentViewControl.DataContext = studentViewModelObject;
+            //StudentViewControl.DataContext = studentViewModelObject;
         }
     }
 }

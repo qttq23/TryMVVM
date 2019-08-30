@@ -4,32 +4,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TryMVVM.View"
+             xmlns:viewModel="clr-namespace:TryMVVM.ViewModel"
+             xmlns:data="clr-namespace:TryMVVM.Model"
+             xmlns:vml="clr-namespace:TryMVVM.VML"
+             vml:ViewModelLocator.AutoHookedUpViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="AliceBlue">
+
+    <!--<UserControl.DataContext>
+        <viewModel:StudentViewModel/>
+    </UserControl.DataContext>-->
+
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type data:Student}">
+     
+            <StackPanel Orientation = "Horizontal">
+                <TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+                    Width = "100" Margin = "3 5 3 5"/>
+
+                <TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+                    Width = "100" Margin = "0 5 3 5"/>
+
+                <TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+                    Margin = "0 5 3 5"/>
+            </StackPanel>
+
+        </DataTemplate>
+    </UserControl.Resources>
+    
     <Grid>
-        <StackPanel HorizontalAlignment = "Left">
+        <!--<ListBox Background="Transparent"
+                 ItemsSource="{Binding Students}" 
+                 ItemTemplate="{StaticResource studentsTemplate}"/>-->
 
-            <ItemsControl ItemsSource = "{Binding Path = Students}">
+        <ListBox Background="Transparent"
+                 ItemsSource="{Binding Students}" />
 
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation = "Horizontal">
-                            <TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
-                        Width = "100" Margin = "3 5 3 5"/>
 
-                            <TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
-                        Width = "100" Margin = "0 5 3 5"/>
-
-                            <TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
-                        Margin = "0 5 3 5"/>
-
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-
-            </ItemsControl>
-
-        </StackPanel>
     </Grid>
 </UserControl>

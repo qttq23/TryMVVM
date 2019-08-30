@@ -11,6 +11,11 @@ namespace TryMVVM.ViewModel
 {
     class StudentViewModel
     {
+        public StudentViewModel()
+        {
+            LoadStudents();
+        }
+
         public ObservableCollection<Student> Students { get; set; }
 
         public void LoadStudents()
