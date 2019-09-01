@@ -13,11 +13,14 @@ namespace TryMVVM.VML
 
         public static bool GetAutoHookedUpViewModel(DependencyObject obj)
         {
+       
             return (bool)obj.GetValue(AutoHookedUpViewModelProperty);
         }
 
         public static void SetAutoHookedUpViewModel(DependencyObject obj, bool value)
         {
+
+       
             obj.SetValue(AutoHookedUpViewModelProperty, value);
         }
 
@@ -35,14 +38,11 @@ namespace TryMVVM.VML
             if (DesignerProperties.GetIsInDesignMode(d)) return;
             
             var viewType = d.GetType();
-
             string str = viewType.FullName;
-            //MessageBox.Show(str);
             str = str.Replace(".View.", ".ViewModel.");
 
             var viewTypeName = str;
             var viewModelTypeName = viewTypeName + "Model";
-            //MessageBox.Show(viewModelTypeName);
             var viewModelType = Type.GetType(viewModelTypeName);
             var viewModel = Activator.CreateInstance(viewModelType);
 

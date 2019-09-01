@@ -33,14 +33,30 @@
         </DataTemplate>
     </UserControl.Resources>
     
-    <Grid>
-        <!--<ListBox Background="Transparent"
+    <Grid Margin="0,2,0,-2">
+        <StackPanel Orientation="Vertical">
+            <!--<ListBox Background="Transparent"
                  ItemsSource="{Binding Students}" 
                  ItemTemplate="{StaticResource studentsTemplate}"/>-->
 
-        <ListBox Background="Transparent"
-                 ItemsSource="{Binding Students}" />
+            <ListBox Background="Transparent"
+                 ItemsSource="{Binding Students}"
+                 SelectedItem="{Binding SelectedStudent}"/>
 
 
+            <Button Content = "Delete" 
+               Command = "{Binding DeleteCommand}" 
+               HorizontalAlignment = "Right" 
+               VerticalAlignment = "Top" 
+               Width = "75" />
+
+            <Button Content = "Clone" 
+               Command = "{Binding CloneCommand}" 
+               HorizontalAlignment = "Right" 
+               VerticalAlignment = "Top" 
+               Width = "75" />
+
+
+        </StackPanel>
     </Grid>
 </UserControl>

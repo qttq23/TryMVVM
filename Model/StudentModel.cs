@@ -22,6 +22,8 @@ namespace TryMVVM.Model
             {
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
+
+            
         }
 
         public string FirstName {
@@ -32,6 +34,7 @@ namespace TryMVVM.Model
                     firstName = value;
                     RaisePropertyChanged("FirstName");
                     RaisePropertyChanged("FullName");
+                    
                 }
             }
         }
