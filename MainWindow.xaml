@@ -5,9 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TryMVVM"
         xmlns:views="clr-namespace:TryMVVM.View"
+        xmlns:viewModels="clr-namespace:TryMVVM.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <views:StudentView x:Name="StudentViewControl" Loaded="StudentViewControl_Loaded"/>
+        Title="MainWindow" Height="450" Width="800"
+        >
+
+    <Window.DataContext>
+        <local:MainWindowView/>
+    </Window.DataContext>
+
+    <!--<Window.Resources>
+        <DataTemplate DataType = "{x:Type viewModels:CustomerListViewModel}">
+            <views:CustomerListView/>
+        </DataTemplate>
+
+        <DataTemplate DataType = "{x:Type viewModels:OrderViewModel}">
+            <views:OrderView/>
+        </DataTemplate>
+    </Window.Resources>-->
+
+    <Grid x:Name="MainGrid">
+        <StackPanel Orientation="Vertical">
+
+            <StackPanel Orientation="Horizontal">
+            
+                <Button Content = "Students" 
+                    Command = "{Binding NavCommand}"
+                    CommandParameter = "students" 
+                    />
+
+                <Button Content = "Teachers" 
+                    Command = "{Binding NavCommand}" 
+                    CommandParameter = "teachers" 
+                    />
+            </StackPanel>
+
+            <ContentControl Content = "{Binding CurrentView}"/>
+            <!--<Grid x:Name="ControlGrid"/>-->
+        </StackPanel>
+        
     </Grid>
+    
+    
+    <!--<Grid>
+        <views:StudentView x:Name="StudentViewControl" Loaded="StudentViewControl_Loaded"/>
+        
+        
+    </Grid>-->
 </Window>

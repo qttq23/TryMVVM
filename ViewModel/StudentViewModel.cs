@@ -15,8 +15,8 @@ namespace TryMVVM.ViewModel
         {
             LoadStudents();
 
-            DeleteCommand = new MyICommand(OnDelete, CanDelete);
-            CloneCommand = new MyICommand(OnClone, CanClone);
+            DeleteCommand = new MyICommand<Object>(OnDelete, CanDelete);
+            CloneCommand = new MyICommand<Object>(OnClone, CanClone);
         }
 
         public ObservableCollection<Student> Students { get; set; }
@@ -33,7 +33,7 @@ namespace TryMVVM.ViewModel
             Students = someNewStudents;
         }
 
-        public MyICommand DeleteCommand { get; set; }
+        public MyICommand<Object> DeleteCommand { get; set; }
 
 
         private Student _selectedStudent;
@@ -54,22 +54,22 @@ namespace TryMVVM.ViewModel
         }
 
 
-        private void OnDelete()
+        private void OnDelete(Object parameter)
         {
             //MessageBox.Show("OnDelete");
             Students.Remove(SelectedStudent);
         }
 
-        private bool CanDelete()
+        private bool CanDelete(Object parameter)
         {
             //MessageBox.Show("CanDelete");
             return (SelectedStudent != null);
         }
 
 
-        public MyICommand CloneCommand { get; set; }
+        public MyICommand<Object> CloneCommand { get; set; }
 
-        private void OnClone()
+        private void OnClone(Object parameter)
         {
             var newStudent = new Student() {
                 FirstName = SelectedStudent.FirstName,
@@ -78,7 +78,7 @@ namespace TryMVVM.ViewModel
             Students.Add(newStudent);
         }
 
-        private bool CanClone()
+        private bool CanClone(Object parameter)
         {
             return (SelectedStudent != null);
         }

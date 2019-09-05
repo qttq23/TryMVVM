@@ -8,19 +8,23 @@ using System.Windows.Input;
 
 namespace TryMVVM
 {
-    public class MyICommand : ICommand
+    public class MyICommand<T> : ICommand
     {
 
-        Action _TargetExecuteMethod;
-        Func<bool> _TargetCanExecuteMethod;
+        Action<T> _TargetExecuteMethod;
+        Func<T, bool> _TargetCanExecuteMethod;
 
 
-        public MyICommand(Action executeMethod, Func<bool> canExecuteMethod)
+        public MyICommand(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
         {
             _TargetExecuteMethod = executeMethod;
             _TargetCanExecuteMethod = canExecuteMethod;
         }
 
+        public MyICommand(Action<T> executeMethod)
+        {
+            _TargetExecuteMethod = executeMethod;
+        }
 
         public event EventHandler CanExecuteChanged;
 
@@ -32,10 +36,11 @@ namespace TryMVVM
 
         public bool CanExecute(object parameter)
         {
-            //MessageBox.Show("CanExecute");
+            //MessageBox.Show(parameter.ToString());
             if (_TargetCanExecuteMethod != null)
             {
-                return _TargetCanExecuteMethod();
+                var tParam = (T)parameter;
+                return _TargetCanExecuteMethod(tParam);
             }
 
             if (_TargetExecuteMethod != null)
@@ -48,10 +53,11 @@ namespace TryMVVM
 
         public void Execute(object parameter)
         {
-            //MessageBox.Show("Execute");
+           
             if (_TargetExecuteMethod != null)
             {
-                _TargetExecuteMethod();
+                var tParam = (T)parameter;
+                _TargetExecuteMethod(tParam);
             }
         }
 

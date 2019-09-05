@@ -16,3 +16,5 @@ C:\Users\khacv\source\repos\WpfApp2019\TryMVVM\obj\Debug\TryMVVM.csproj.Generate
 C:\Users\khacv\source\repos\WpfApp2019\TryMVVM\obj\Debug\TryMVVM.csproj.CoreCompileInputs.cache
 C:\Users\khacv\source\repos\WpfApp2019\TryMVVM\obj\Debug\TryMVVM.exe
 C:\Users\khacv\source\repos\WpfApp2019\TryMVVM\obj\Debug\TryMVVM.pdb
+C:\Users\khacv\source\repos\WpfApp2019\TryMVVM\obj\Debug\View\TeacherView.g.cs
+C:\Users\khacv\source\repos\WpfApp2019\TryMVVM\obj\Debug\View\TeacherView.baml
