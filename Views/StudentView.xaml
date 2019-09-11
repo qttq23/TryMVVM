@@ -11,28 +11,99 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <Grid  x:Key="StudentInformationView">
-            <StackPanel Orientation ="Vertical">
-                <TextBox Text = "{Binding Path = Id, Mode = TwoWay}" 
+            <StackPanel Orientation ="Vertical"  DataContext="{Binding CurrentStudent}">
+                <TextBox 
+                    Text = "{Binding Id, Mode = TwoWay, 
+                    NotifyOnValidationError=True,
+                    ValidatesOnNotifyDataErrors=True,
+                    UpdateSourceTrigger=PropertyChanged}"
+                         
+                    Width = "100" Margin = "3 5 3 5">
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                --><!--Placeholder for the TextBox itself--><!--
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                                <ItemsControl ItemsSource="{Binding}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+
+                --><!--<TextBox Text = "{Binding Path = Name, Mode = TwoWay, ValidatesOnNotifyDataErrors=True}" 
                     Width = "100" Margin = "3 5 3 5"/>
 
-                <TextBox Text = "{Binding Path = Name, Mode = TwoWay}" 
+                <TextBox Text = "{Binding Path = Age, Mode = TwoWay, ValidatesOnNotifyDataErrors=True}" 
                     Width = "100" Margin = "3 5 3 5"/>
 
-                <TextBox Text = "{Binding Path = Age, Mode = TwoWay}" 
-                    Width = "100" Margin = "3 5 3 5"/>
-
-                <TextBox Text = "{Binding Path = ClassId, Mode = TwoWay}" 
-                    Width = "100" Margin = "3 5 3 5"/>
+                <TextBox Text = "{Binding Path = ClassId, ValidatesOnNotifyDataErrors=True}" 
+                    Width = "100" Margin = "3 5 3 5"/>--><!--
             </StackPanel>
         </Grid>
         
-    </UserControl.Resources>
+    </UserControl.Resources>-->
 
+    <UserControl.Resources>
+        <ControlTemplate x:Key="DataErrorTemplate">
+            <StackPanel>
+                <!-- Placeholder for the TextBox itself -->
+                <AdornedElementPlaceholder x:Name="textBox"/>
+                <ItemsControl ItemsSource="{Binding}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ErrorContent}" Foreground="Red"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ControlTemplate>
+
+        <Grid  x:Key="StudentInformationView">
+            <StackPanel Orientation ="Vertical">
+                <TextBox Text = "{Binding Path = Id, Mode = TwoWay,
+                                            ValidatesOnDataErrors=True,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            NotifyOnValidationError=True}"
+                                Validation.ErrorTemplate="{StaticResource DataErrorTemplate}"
+                    Width = "100" Margin = "10"/>
+
+
+                <TextBox Text = "{Binding Path = Name, Mode = TwoWay,
+                                            ValidatesOnDataErrors=True,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            NotifyOnValidationError=True}"
+                            Validation.ErrorTemplate="{StaticResource DataErrorTemplate}"
+                    Width = "100" Margin = "10"/>
+
+                <TextBox Text = "{Binding Path = Age, Mode = TwoWay,
+                                            ValidatesOnDataErrors=True,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            NotifyOnValidationError=True}" 
+                                Validation.ErrorTemplate="{StaticResource DataErrorTemplate}"
+                    Width = "100" Margin = "10"/>
+
+                <TextBox Text = "{Binding Path = ClassId, Mode = TwoWay,
+                                            ValidatesOnDataErrors=True,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            NotifyOnValidationError=True}" 
+                                Validation.ErrorTemplate="{StaticResource DataErrorTemplate}"
+                    Width = "100" Margin = "10"/>
+            </StackPanel>
+        </Grid>
+    </UserControl.Resources>
     
     <Grid DataContext="{Binding CurrentStudent}">
         <TextBlock Text="Student"/>
         <ContentControl Content="{StaticResource StudentInformationView}"/>
     </Grid>
+
+
 </UserControl>
